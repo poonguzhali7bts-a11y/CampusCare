@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}Submit Grievance{% endblock %}{% block content %}
+<div class="page-title"><span class="eyebrow">STUDENT SERVICES</span><h1>Submit a grievance</h1><p>Tell us about the issue. Fields marked * are required.</p></div>
+<div class="layout"><form class="panel form" method="post"><h2>01 · Your details</h2><div class="grid">
+<label>Full name *<input name="student_name" required maxlength="100" value="{{ form.get('student_name','') }}" placeholder="Your full name"></label>
+<label>College email *<input type="email" name="email" required maxlength="150" value="{{ form.get('email','') }}" placeholder="you@college.edu"></label>
+<label>Department *<select name="department" required><option value="">Select department</option>{% for d in ['CSE','IT','ECE','EEE','Mechanical','Civil','AI & Data Science','Other'] %}<option {% if form.get('department')==d %}selected{% endif %}>{{ d }}</option>{% endfor %}</select></label>
+<label>Location (optional)<input name="location" maxlength="150" value="{{ form.get('location','') }}" placeholder="e.g. Block A, Room 203"></label></div>
+<h2 class="separated">02 · Grievance details</h2><div class="grid">
+<label>Category *<select name="category" required><option value="">Choose a category</option>{% for c in ['Infrastructure','IT Support / Wi-Fi','Cleanliness & Sanitation','Transport','Library','Hostel','Fees & Administration','Academic','Safety','Other'] %}<option {% if form.get('category')==c %}selected{% endif %}>{{ c }}</option>{% endfor %}</select></label>
+<label>Subject *<input name="subject" required maxlength="150" value="{{ form.get('subject','') }}" placeholder="Short summary of issue"></label>
+<label class="wide">Description *<textarea name="description" required minlength="10" maxlength="3000" rows="6" placeholder="Explain what happened and what needs attention...">{{ form.get('description','') }}</textarea><small>Do not include passwords or unnecessary sensitive information.</small></label></div>
+<div class="form-actions"><a class="button secondary" href="{{ url_for('home') }}">Cancel</a><button class="button primary" type="submit">Submit grievance →</button></div></form>
+<aside class="help"><div class="symbol">✦</div><h3>Before you submit</h3><ul><li>Describe the issue clearly and respectfully.</li><li>Choose the closest category.</li><li>Include the location if useful.</li><li>Save the grievance ID after submission.</li></ul><p><b>Privacy reminder</b><br>Use test data while developing this classroom project.</p></aside></div>{% endblock %}
